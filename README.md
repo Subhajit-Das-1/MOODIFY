@@ -19,8 +19,40 @@ Moodify is a mood-based music recommendation web app that personalizes playlists
 - **Music API:** Spotify Web API
 - **Deployment:** Vercel
 
-## Live Demo:
-[Insert your live demo link here]
-
 ## GitHub Repository:
 [Link to GitHub Repo]
+
+## 🚀 Run Locally
+
+To run Moodify on your local machine, follow these steps:
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) and npm must be installed
+
+### Steps
+
+1. **Clone the repository**
+```bash
+git clone https://github.com/Subhajit-Das-1/MOODIFY.git
+cd MOODIFY
+2. **Install dependencies**
+```bash
+
+Copy
+Edit
+npm install
+
+3. **Start the development server**
+```bash
+
+Copy
+Edit
+npm start
+
+4. **Open your browser and go to:**
+
+arduino
+Copy
+Edit
+http://localhost:3000
