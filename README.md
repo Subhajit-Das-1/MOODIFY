@@ -23,5 +23,6 @@ Moodify is a mood-based music recommendation web app that personalizes playlists
 [Check out Moodify here](https://moodify.vercel.app)
 
 
-## GitHub Repository:
-[Link to GitHub Repo]
+## 🗂 GitHub Repository:
+[Link to GitHub Repo](https://github.com/Subhajit-Das-1/MOODIFY)
+
