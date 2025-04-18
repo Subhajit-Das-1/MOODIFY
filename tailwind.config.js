@@ -3,16 +3,15 @@ module.exports = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
-        'happy': '#FFD700',
-        'sad': '#4169E1',
-        'angry': '#FF4500',
-        'chill': '#90EE90',
-        'energetic': '#FF69B4',
-        'peaceful': '#87CEEB',
+        // Custom colors if needed
       },
+      backgroundColor: {
+        // If needed, you can add custom background colors here
+      }
     },
   },
   plugins: [],

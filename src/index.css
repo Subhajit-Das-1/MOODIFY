@@ -1,13 +1,428 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes wave {
+  0% {
+    transform: translateX(0) translateY(0);
+  }
+  50% {
+    transform: translateX(20px) translateY(-15px);
+  }
+  100% {
+    transform: translateX(0) translateY(0);
+  }
+}
+
+@keyframes musicNote {
+  0% {
+    opacity: 0;
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-100px) rotate(20deg);
+  }
+}
+
+@keyframes equalizer {
+  0% { height: 5px; }
+  50% { height: 20px; }
+  100% { height: 5px; }
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+@keyframes fadeSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.2); }
+}
+
+@keyframes scale-in {
+  0% { transform: scale(0.9); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes slide-up {
+  0% { transform: translateY(20px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes rotate-bg {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes gradient-x {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes gradient-float {
+  0%, 100% {
+    background-position: 0% 50%;
+    transform: translateY(0);
+  }
+  50% {
+    background-position: 100% 50%;
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes float-music-note {
+  0% {
+    opacity: 0;
+    transform: translateY(0) translateX(0) rotate(0deg);
+  }
+  50% {
+    opacity: 0.3;
+    transform: translateY(-100px) translateX(30px) rotate(20deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-200px) translateX(0) rotate(40deg);
+  }
+}
+
+@keyframes sparkle {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0);
+  }
+}
+
+@keyframes reliable-shake {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+  }
+  25% {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
+  }
+  50% {
+    transform: translateY(0) scale(1);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+  }
+  75% {
+    transform: translateY(-2px) scale(1.01);
+    box-shadow: 0 2px 12px rgba(255, 255, 255, 0.25);
+  }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient 3s ease infinite;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse 4s ease-in-out infinite;
+}
+
+.animate-wave {
+  animation: wave 3s ease-in-out infinite;
+}
+
+.animate-music-note {
+  animation: musicNote 2s ease-in-out infinite;
+}
+
+.playlist-card {
+  @apply relative overflow-hidden transition-all duration-300;
+}
+
+.playlist-card::before {
+  content: '';
+  @apply absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent;
+  transform: translateX(-100%);
+}
+
+.playlist-card:hover::before {
+  animation: shimmer 1s forwards;
+}
+
+.playlist-card-content {
+  @apply relative z-10 backdrop-blur-sm;
+}
+
+.mood-indicator {
+  @apply absolute top-2 right-2 w-8 h-8 rounded-full flex items-center justify-center;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(4px);
+}
+
+.animate-delay-100 {
+  animation-delay: 100ms;
+}
+
+.animate-delay-200 {
+  animation-delay: 200ms;
+}
+
+.animate-delay-300 {
+  animation-delay: 300ms;
+}
+
+.animate-delay-400 {
+  animation-delay: 400ms;
+}
+
+.animate-delay-500 {
+  animation-delay: 500ms;
+}
+
+.animate-delay-1000 {
+  animation-delay: 1000ms;
+}
+
+.animate-delay-1500 {
+  animation-delay: 1500ms;
+}
+
+.animate-delay-2000 {
+  animation-delay: 2000ms;
+}
+
+.mood-quote {
+  @apply text-4xl font-bold text-center mb-8 px-6 py-3;
+  animation: fadeSlideIn 0.5s ease-out;
+}
+
+.mood-quote-happy {
+  color: #FFE45C;
+  filter: drop-shadow(0 0 8px rgba(255, 228, 92, 0.8));
+}
+
+.mood-quote-sad {
+  color: #4FC3F7;
+  filter: drop-shadow(0 0 8px rgba(79, 195, 247, 0.8));
+  font-style: italic;
+}
+
+.mood-quote-angry {
+  color: #FF5252;
+  filter: drop-shadow(0 0 8px rgba(255, 82, 82, 0.8));
+  letter-spacing: 1px;
+  font-weight: 900;
+}
+
+.mood-quote-chill {
+  color: #B388FF;
+  filter: drop-shadow(0 0 8px rgba(179, 136, 255, 0.8));
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.mood-quote-energetic {
+  color: #FF4081;
+  filter: drop-shadow(0 0 8px rgba(255, 64, 129, 0.8));
+  letter-spacing: 0.5px;
+  font-weight: 800;
+}
+
+.mood-quote-peaceful {
+  color: #80DEEA;
+  filter: drop-shadow(0 0 8px rgba(128, 222, 234, 0.8));
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.mood-quote span {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+}
+
+/* Add a subtle hover effect */
+.mood-quote:hover {
+  transform: translateY(-2px);
+  transition: transform 0.3s ease;
+}
+
+@layer base {
+  body {
+    @apply transition-colors duration-500;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+      monospace;
+  }
+}
+
+@layer components {
+  .mood-button {
+    @apply rounded-lg p-4 cursor-pointer backdrop-blur-sm;
+    background-color: rgba(0, 0, 0, 0.1);
+    min-height: 80px;
+    width: 100%;
+    animation: reliable-shake 4s ease-in-out infinite;
+    transform-origin: center center;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  }
+  
+  .mood-button:hover {
+    @apply transform scale-105;
+    background-color: rgba(255, 255, 255, 0.2);
+    animation-play-state: paused;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+  }
+  
+  .mood-button-content {
+    @apply p-2 flex items-center justify-center gap-3;
+    transition: transform 0.3s ease;
+  }
+  
+  .mood-emoji {
+    display: inline-block;
+    font-size: 1.75rem;
+    transition: transform 0.3s ease;
+  }
+  
+  .mood-button:hover .mood-emoji {
+    transform: scale(1.1);
+  }
+  
+  .mood-text {
+    @apply text-base font-medium;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+  }
+  
+  .mood-button:nth-child(1) { animation-delay: 0s; }
+  .mood-button:nth-child(2) { animation-delay: -0.4s; }
+  .mood-button:nth-child(3) { animation-delay: -0.8s; }
+  .mood-button:nth-child(4) { animation-delay: -1.2s; }
+  .mood-button:nth-child(5) { animation-delay: -1.6s; }
+  .mood-button:nth-child(6) { animation-delay: -2s; }
+  
+  .music-note {
+    @apply absolute text-2xl opacity-0;
+  }
+  
+  .wave-line {
+    @apply absolute bottom-0 left-0 w-full h-1 opacity-30;
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 3s infinite;
+}
+
+.welcome-text {
+  animation: slide-up 0.8s ease-out forwards;
+}
+
+.animate-gradient-x {
+  background-size: 200% auto;
+  animation: gradient-x 3s ease infinite;
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 1s ease-out forwards;
+}
+
+.animation-delay-300 {
+  animation-delay: 300ms;
+}
+
+.animate-float-music-note {
+  animation: float-music-note 10s linear infinite;
+  font-size: 1.5rem;
+  color: white;
+}
+
+.animate-sparkle {
+  animation: sparkle 4s ease-in-out infinite;
+  font-size: 0.75rem;
+  color: white;
 }
